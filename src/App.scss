@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 
+body {
+    background-color: #DDDDDD;
+}
+
 header {
     display: flex;
     justify-content: space-between;
@@ -21,18 +25,13 @@ header {
 
             li {
                 svg {
-                    width: 35px;
-                    height: 35px;
-                    :hover {
-                        
-                        fill: darken($color: #ffffff, $amount: 30%);
-                        transition-duration: 0.2s;
-                    
+                    width: 25px;
+                    height: 25px;
+                    &:hover {
+                        filter: brightness(0.8);
+                        transition-duration: 0.4s;
+                        cursor: pointer;
                     }
-                }
-
-                :hover {
-                    cursor: pointer;
                 }
             }
         }
