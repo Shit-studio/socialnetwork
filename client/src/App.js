@@ -4,9 +4,12 @@ import { UserMenu } from "./components";
 import { Home, UserProfile, Login, Register } from "./pages";
 import { Switch, Route, Link } from "react-router-dom";
 
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 function App() {
   return (
+    <Provider store={store}>
     <div>
       <header>
         <div>
@@ -164,6 +167,7 @@ function App() {
         <Route exact path="/auth/register" component={Register} />
       </Switch>
     </div>
+    </Provider>
   );
 }
 

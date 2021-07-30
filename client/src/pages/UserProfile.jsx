@@ -1,10 +1,10 @@
 import React from 'react';
-import { Menu } from '../components';
+import { LOH } from '../components';
 
 export function UserProfile() {
     return (
         <div>
-            <Menu />
+            <LOH />
         </div>
     )
 }

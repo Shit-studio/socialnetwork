@@ -3,10 +3,12 @@ const chalk = require("chalk");
 const mongoose = require("mongoose");
 const users = require("./routes/users");
 const passport = require("passport");
+// const cors = require("/cors");
 
 const port = 5000;
 const app = express();
 
+// app.options('*',cors())
 app.use(
     express.urlencoded({
         extended: false

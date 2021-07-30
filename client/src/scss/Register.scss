@@ -1,0 +1,41 @@
+.ilyaGay {
+    display: flex;
+    height: 100vh;
+
+    .gay {
+        display: flex;
+        justify-content: center;
+        background-color: #29669F;
+        width: 50%;
+        color: white;
+        align-items: center;
+        font-size: 64px;
+    }
+
+    .gaytwo {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        background-color: #EAEAEA;
+
+        input {
+            font-size: 24px;
+            height: 62px;
+            width: 456px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            color: white;
+            font-size: 24px;
+            height: 54px;
+            width: 264px;
+            border-radius: 20px;
+            background-color: #314067;
+            text-align: center;
+        }
+    }
+}

@@ -1,2 +1,4 @@
 export { UserMenu } from './UserMenu.jsx';
-export { Menu } from './MainEpt.jsx';
+export { LOH } from './MainEpt.jsx';
+export { Friend } from './FriendsForBilly.jsx';
+export { Ass } from './Ass.jsx';
