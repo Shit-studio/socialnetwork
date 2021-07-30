@@ -1,0 +1,92 @@
+.stylesept{
+    padding-top: 20px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 1410px;
+
+    .BillyGayTlo {
+        width: 100%;
+        height: 300px;
+        border-radius: 10px 10px 0 0;
+        background-image: url("../assets/img/nature.jpeg");
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+
+    .tipamenu{
+        
+        // text-align: center;
+        font-size: 36px;
+        height: 87px;
+        width:1410px;
+        background-color: #EAEAEA;
+        
+        ul{
+
+            display:flex;
+            justify-content: space-between;
+            align-content: center;
+            list-style-type: none;
+            height: 87px;
+            margin:0;
+
+            li {
+                align-self: center;
+                transition: background-color 0.2s;
+            }
+
+            li:not(:nth-child(3)){
+                height: 60px;
+                width: 200px;
+                color: #888888;
+                text-align: center;
+                border-radius: 10px;
+
+                &.active {
+                    color: #000000;
+                }
+
+                &:hover {
+                    background-color: darken($color: #EAEAEA, $amount: 10%);
+                    cursor: pointer;
+                }
+            }
+            
+            .videoli{
+                padding-right:40px;
+            }
+        }
+    }
+    .tipaknopky{
+        height: 79px;
+        width:1410px;
+        background-color: #E2E2E2;
+        display: flex;
+        justify-content: flex-start;
+        a{
+            font-size:36px;
+            height:44px;
+            text-decoration:none;
+            color:white;
+            padding:10px;
+            background-color:#314067;
+            border-radius: 10px;
+            margin-right: 20px;
+            height:44px;
+            position: relative;
+            top:15%;
+            &:hover{
+                transition-duration: 0.5s;
+                background-color: lighten($color: #314067, $amount: 15%);
+            }
+        }
+    }
+    
+}
+// .ebanetlo{
+//     display: block;
+//     margin-left: auto;
+//     margin-right: auto;
+// }
