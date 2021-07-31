@@ -2,21 +2,33 @@ import React from "react";
 import classNames from "classnames";
 import userImg from '../assets/img/userImg.png';
 // import images from '../assets/img';
+import { Link } from "react-router-dom";
 import gearSvg from '../assets/img/gear.svg';
 import bookmarkSvg from '../assets/img/bookmark.svg';
 import exitSvg from '../assets/img/exit.svg';
 import '../scss/usermenu.scss';
+import { useSelector, useDispatch, connect } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { logoutUser } from "../redux/actions/authActions";
 
 // const [gearSvg, bookmarkSvg, exitSvg] = images;
 
 export function UserMenu() {
-
   const [isActive, setActive] = React.useState(false);
+  const auth = useSelector(state => state.auth);
+
+  const dispatch = useDispatch();
+
+  const logoutHandler = () => {
+    dispatch(logoutUser());
+  }
+
+  React.useEffect(() => console.log(auth.user));
 
   return (
       <div onClick={()=>setActive(!isActive)} className={`user_menu ${classNames({active: isActive})}`}>
         <span>
-          Ім'я Прізвище
+          {`${auth.user.name} ${auth.user.surname}`}
           <svg
             width="20"
             height="20"
@@ -33,10 +45,12 @@ export function UserMenu() {
         <div className="user_menu__popup active">
           <div className="a">
             <img width={70} height={70} src={userImg} alt="User" />
+            <Link to={`/user/${auth.user.id}`} >
             <div>
-              <span>Ім'я Прізвище</span>
+              <span>{`${auth.user.name} ${auth.user.surname}`}</span>
               <span>Перегляньте свій cock</span>
             </div>
+            </Link>
           </div>
           <hr />
           <div className="options">
@@ -44,8 +58,10 @@ export function UserMenu() {
             <div><img width={30} height={30} src={gearSvg} alt="gear" />Налаштування</div>
           </div>
           <hr />
-          <div className="exit"><img width={30} height={30} src={exitSvg} alt="exit" />Вийти</div>
+          <div onClick={logoutHandler} className="exit"><img width={30} height={30} src={exitSvg} alt="exit" />Вийти</div>
         </div>
       </div>
   );
 }
+
+export default connect()(UserMenu);

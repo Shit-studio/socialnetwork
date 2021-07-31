@@ -2,12 +2,12 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const keys = require("../config/keys");
+const keys = require("../../config/keys");
 
-const validateRegisterInput = require("../validation/register");
-const validateLoginInput = require("../validation/login");
+const validateRegisterInput = require("../../validation/register");
+const validateLoginInput = require("../../validation/login");
 
-const User = require("../models/User");
+const User = require("../../models/User");
 
 router.post("/register", (req, res) => {
     const { errors, isValid } = validateRegisterInput(req.body);
@@ -23,6 +23,7 @@ router.post("/register", (req, res) => {
             } else {
                 const newUser = new User({
                     name: req.body.name,
+                    surname: req.body.surname,
                     email: req.body.email,
                     password: req.body.password
                 });
@@ -58,7 +59,9 @@ router.post("/login", (req, res) => {
           if (isMatch) {
             const payload = {
               id: user.id,
-              name: user.name
+              name: user.name,
+              surname: user.surname,
+              zzz: "zzz"
             };
 
             jwt.sign(

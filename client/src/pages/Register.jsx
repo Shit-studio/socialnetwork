@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch, connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { registerUser } from "../redux/actions/authActions";
 import '../scss/Register.scss';
@@ -10,10 +10,19 @@ export function Register() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [password2, setPassword2] = React.useState("");
-  const [errors, setErrors] = React.useState({});
+  // const [errors, setErrors] = React.useState({});
+
+  const auth = useSelector(state => state.auth);
+  const errors = useSelector(state => state.errors);
 
   const dispatch = useDispatch();
   const history = useHistory();
+
+  React.useEffect(() => {
+    if (auth.isAuthenticated) {
+      history.push("/");
+    }
+  })
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -25,7 +34,6 @@ export function Register() {
       password: password,
       password2: password2
     }
-    console.log(newUser);
 
     dispatch(registerUser(newUser, history));
   }
@@ -51,7 +59,7 @@ export function Register() {
             <input
               value={surname}
               onChange={(e) => setSurname(e.target.value)}
-              id="name"
+              id="surname"
               type="text"
               placeholder="Surname"
             />
@@ -91,3 +99,13 @@ export function Register() {
     </div>
   );
 }
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(Register);
