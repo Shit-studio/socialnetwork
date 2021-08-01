@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch, connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { loginUser } from "../redux/actions/authActions";
+import { Link } from "react-router-dom";
 import '../scss/Register.scss';
 
 export function Login() {
@@ -46,7 +47,7 @@ export function Login() {
               onChange={(e) => setEmail(e.target.value)}
               id="email"
               type="email"
-              placeholder="Email adress"
+              placeholder="Електронна адреса"
             />
             <br />
 
@@ -55,11 +56,12 @@ export function Login() {
               onChange={(e) => setPassword(e.target.value)}
               id="password"
               type="password"
-              placeholder="Password"
+              placeholder="Пароль"
             />
             <br />
 
-            <button onSubmit={submitHandler} type="submit">Log In</button>
+            <div onClick={submitHandler} class="btn">Log In</div>
+            <span>Ще не зареєстровані? <Link to="/auth/register">Створити обліковий запис</Link>.</span>
           </form>
         </div>
       </div>

@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch, connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { registerUser } from "../redux/actions/authActions";
+import { Link } from "react-router-dom";
 import '../scss/Register.scss';
 
 export function Register() {
@@ -53,7 +54,7 @@ export function Register() {
               onChange={(e) => setName(e.target.value)}
               id="name"
               type="text"
-              placeholder="Name"
+              placeholder="Ім'я"
             />
             <br />
             <input
@@ -61,7 +62,7 @@ export function Register() {
               onChange={(e) => setSurname(e.target.value)}
               id="surname"
               type="text"
-              placeholder="Surname"
+              placeholder="Прізвище"
             />
             <br />
 
@@ -70,7 +71,7 @@ export function Register() {
               onChange={(e) => setEmail(e.target.value)}
               id="email"
               type="email"
-              placeholder="Email adress"
+              placeholder="Електронна адреса"
             />
             <br />
 
@@ -79,7 +80,7 @@ export function Register() {
               onChange={(e) => setPassword(e.target.value)}
               id="password"
               type="password"
-              placeholder="Password"
+              placeholder="Пароль"
             />
             <br />
 
@@ -88,11 +89,13 @@ export function Register() {
               onChange={(e) => setPassword2(e.target.value)}
               id="password2"
               type="password"
-              placeholder="Confirm password"
+              placeholder="Підтвердьте пароль"
             />
 
             <br />
-            <button onSubmit={submitHandler} type="submit">Sign Up</button>
+            
+            <div onClick={submitHandler} class="btn">Реєстрація</div>
+            <span>Уже зареєстровані? <Link to="/auth/login">Увійти</Link>.</span>
           </form>
         </div>
       </div>

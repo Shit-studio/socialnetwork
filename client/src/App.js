@@ -1,7 +1,7 @@
 import "./App.scss";
 import { Header } from "./components";
 import { Home, UserProfile, Login, Register } from "./pages";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { setCurrentUser, logoutUser } from "./redux/actions/authActions";
 import PrivateRoute from "./components/PrivateRoute";
 import setAuthToken from "./utils/setAuthToken";

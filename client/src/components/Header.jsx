@@ -1,8 +1,8 @@
 import React from 'react'
 import logo from "../assets/img/poo.svg";
 import { UserMenu } from './UserMenu';
-import { Switch, Route, Link, useHistory } from "react-router-dom";
-import { useSelector, useDispatch, connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { useSelector, connect } from "react-redux";
 import classNames from "classnames";
 
 export function Header() {

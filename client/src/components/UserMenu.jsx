@@ -5,7 +5,7 @@ import userImg from '../assets/img/userImg.png';
 import { Link } from "react-router-dom";
 import gearSvg from '../assets/img/gear.svg';
 import bookmarkSvg from '../assets/img/bookmark.svg';
-import exitSvg from '../assets/img/exit.svg';
+import ExitSvg from '../assets/img/exit.jsx';
 import '../scss/usermenu.scss';
 import { useSelector, useDispatch, connect } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -44,7 +44,7 @@ export function UserMenu() {
         </span>
         <div className="user_menu__popup active">
           <div className="a">
-            <img width={70} height={70} src={userImg} alt="User" />
+            <img width={60} height={60} src={userImg} alt="User" />
             <Link to={`/user/${auth.user.id}`} >
             <div>
               <span>{`${auth.user.name} ${auth.user.surname}`}</span>
@@ -57,8 +57,8 @@ export function UserMenu() {
             <div><img width={30} height={30} src={bookmarkSvg} alt="bookmark" />Збережені</div>
             <div><img width={30} height={30} src={gearSvg} alt="gear" />Налаштування</div>
           </div>
-          <hr />
-          <div onClick={logoutHandler} className="exit"><img width={30} height={30} src={exitSvg} alt="exit" />Вийти</div>
+          {/* <hr /> */}
+          <div onClick={logoutHandler} className="exit"><ExitSvg width={25} height={25} fill="red" />Вийти</div>
         </div>
       </div>
   );

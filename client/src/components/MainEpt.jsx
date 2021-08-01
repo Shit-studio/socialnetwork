@@ -32,12 +32,15 @@ export function LOH() {
                 />
               </li>
               <li>Фото</li>
-              <li className="videoli">Відео</li>
+              <li>Відео</li>
             </ul>
           </div>
-          <div className="tipaknopky">
-            <a href="#" style={{ marginLeft: 40 }}>Надіслати повідомлення</a>
-            <a>Додати в друзі</a>
+          <div className="tipamenu2">
+            <div><span>Арсен Аваков</span></div>
+            <div className="tipaknopky">
+              <a href="#" style={{ marginLeft: 40 }}>Надіслати повідомлення</a>
+              <a>Додати в друзі</a>
+            </div>
           </div>
         </div>
       </div>
