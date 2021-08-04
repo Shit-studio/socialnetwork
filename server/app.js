@@ -1,9 +1,10 @@
 const express = require("express");
 const chalk = require("chalk");
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 const users = require("./routes/api/users");
 const passport = require("passport");
 const cors = require("cors");
+const { db } = require("./models");
 
 const port = 5000;
 const app = express();
@@ -16,10 +17,15 @@ app.use(
 );
 app.use(express.json());
 
-const db = require("./config/keys").mongoURI;
-mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log(chalk.green("MongoDB successfully connected")))
-    .catch(err => console.log(err));
+db.sync({force: true})
+    .then(() => {
+        console.log(chalk.green("DB synced!"));
+    });
+
+// const db = require("./config/keys").mongoURI;
+// mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+//     .then(() => console.log(chalk.green("MongoDB successfully connected")))
+//     .catch(err => console.log(err));
 
 app.use(passport.initialize());
 require("./config/passport")(passport);

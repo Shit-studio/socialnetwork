@@ -7,7 +7,7 @@ const keys = require("../../config/keys");
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 
-const User = require("../../models/User");
+const { User } = require("../../models");
 
 router.post("/register", (req, res) => {
     const { errors, isValid } = validateRegisterInput(req.body);
@@ -16,12 +16,13 @@ router.post("/register", (req, res) => {
         return res.status(400).json(errors);
     }
 
-    User.findOne({ email: req.body.email })
+    User.findOne({ where: { email: req.body.email }})
         .then(user => {
             if (user) {
                 return res.status(400).json({email: "Email already exists!"})
             } else {
-                const newUser = new User({
+
+                const newUser = User.build({
                     name: req.body.name,
                     surname: req.body.surname,
                     email: req.body.email,
@@ -38,6 +39,8 @@ router.post("/register", (req, res) => {
                             .catch(err => console.log(err))
                     })
                 })
+
+
             }
         });
 })
@@ -50,7 +53,7 @@ router.post("/login", (req, res) => {
         return res.status(400).json(errors);
     }
 
-    User.findOne({ email: req.body.email }).then(user => {
+    User.findOne({where: { email: req.body.email }}).then(user => {
         if (!user) {
           return res.status(404).json({ emailnotfound: "Email not found" });
         }
@@ -60,8 +63,7 @@ router.post("/login", (req, res) => {
             const payload = {
               id: user.id,
               name: user.name,
-              surname: user.surname,
-              zzz: "zzz"
+              surname: user.surname
             };
 
             jwt.sign(
