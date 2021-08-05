@@ -1,28 +1,28 @@
 const { db } = require("./index.js");
 
-module.exports = (db, Sequelize) => {
-    return db.define("users", {
+module.exports = (db, types) => {
+    return db.define("user", {
         id: {
-            type: Sequelize.INTEGER,
-            required: true,
+            type: types.INTEGER,
             autoIncrement: true,
-            primaryKey: true
+            primaryKey: true,
+            allowNull: false
         },
         name: {
-            type: Sequelize.STRING,
-            required: true
+            type: types.STRING,
+            allowNull: false
         },
         surname: {
-            type: Sequelize.STRING,
-            required: true
+            type: types.STRING,
+            allowNull: false
         },
         email: {
-            type: Sequelize.STRING,
-            required: true
+            type: types.STRING,
+            allowNull: false
         },
         password: {
-            type: Sequelize.STRING,
-            required: true
+            type: types.STRING,
+            allowNull: false
         }
     }
 )};

@@ -7,7 +7,46 @@ const keys = require("../../config/keys");
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 
-const { User } = require("../../models");
+const { User, Post } = require("../../models");
+const { response } = require("express");
+
+router.get("/getuserposts", (req, res) => {
+    if(req.query.userId) {
+      User.findOne({where: {id: req.query.userId}})
+        .then(user => {
+          user.getPosts().then(posts => res.json(posts));
+          // res.json({user:user, posts: user.getPosts().then((res) => console.log(res)), count: user.countPosts().then((res) => console.log(res))});
+        })
+        .catch((err) => console.log(err))
+    }
+})
+
+router.get("/getposts", (req, res) => {
+  result = []
+  Post.findAll({include: [ User ]})
+      .then(posts => {
+        posts.map((post) => {
+          result.push(
+            {
+              id: post.dataValues.id,
+              caption: post.dataValues.caption,
+              username: post.dataValues.user.dataValues.name + " " + post.dataValues.user.dataValues.surname,
+              userId: post.dataValues.user.dataValues.id
+            }
+          );
+          })
+      })
+        .then(() => res.json(result))
+      
+
+})
+
+router.post("/createpost", (req, res) => {
+  Post.create({
+    userId: req.body.userId,
+    caption: req.body.caption
+  });
+})
 
 router.post("/register", (req, res) => {
     const { errors, isValid } = validateRegisterInput(req.body);

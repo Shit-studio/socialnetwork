@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const UserModel = require("./User.js");
+const PostModel = require("./Post.js");
 
 const db = new Sequelize("heroku_1b0e515a023e5c0", "b0006858b92fec", "5c021dd1", {
     dialect: "mysql",
@@ -9,18 +10,14 @@ const db = new Sequelize("heroku_1b0e515a023e5c0", "b0006858b92fec", "5c021dd1",
 });
 
 const User = UserModel(db, Sequelize);
+const Post = PostModel(db, Sequelize);
 
-// const DBInit = async () => {
-//     await db.sync({force: true});
-//     await User.create({
-//         name: "aab",
-//         surname: "aab",
-//         email: "aab",
-//         password: "aab"
-//     });
-//     console.log("DB synced");
-// }
+User.hasMany(Post, {foreignKey: 'ID_USER', onDelete: "CASCADE"});
+Post.belongsTo(User);
+// Post.belongsTo(User, {
+//     foreignKey: "userId",
+//     as: "user"
+// });
 
-// db.sync();
 
-module.exports = { db, User };
+module.exports = { db, User, Post };

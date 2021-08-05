@@ -8,7 +8,6 @@ import bookmarkSvg from '../assets/img/bookmark.svg';
 import ExitSvg from '../assets/img/exit.jsx';
 import '../scss/usermenu.scss';
 import { useSelector, useDispatch, connect } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { logoutUser } from "../redux/actions/authActions";
 
 // const [gearSvg, bookmarkSvg, exitSvg] = images;

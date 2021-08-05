@@ -1,17 +1,53 @@
 import React from 'react';
-import { useSelector, useDispatch, connect } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { PostCreator, Post } from '../components';
+import { useSelector, connect } from 'react-redux';
+import axios from 'axios';
+import "../scss/Home.scss";
 
-export function Home() {
-    // const auth = useSelector(state => state.auth)
+export class Home extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            posts: []        
+        }
+    }
 
-    // React.useEffect(() => console.log(auth))
+    componentDidMount() {
+        axios.get('http://localhost:5000/api/users/getposts')
+             .then(res => {
+                this.state = {
+                    posts: res.data
+                }
+                // console.log(result);
+                // setIsLoaded(true);
+                console.log("State: ", this.state.posts)
+                this.render();    
+            })
+    }
 
+    // const [ isLoaded, setIsLoaded ] = React.useState(false);
+
+    // React.useEffect(() => {
+    //     axios.get('http://localhost:5000/api/users/getposts')
+    //          .then(res => {
+    //             result = res.data;
+    //             console.log(result);
+    //             setIsLoaded(true);
+                
+    //         })
+    // })
+
+    render() {
     return (
-        <div>
-            Home
+        <div id="home">
+            <PostCreator />
+            {
+                this.state.posts.map((post, key) => <Post key={key} username={post.username} content={post.caption} />)
+            }
         </div>
     )
+    }
 }
 
+export default Home;
 // export default connect()(Home);

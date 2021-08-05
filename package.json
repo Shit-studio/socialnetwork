@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"cd server && npm run server\" \"npm run client\""
+    "dev": "concurrently \"cd server && npm run server\" \"npm run client\"",
+    "sync": "node server/models/sync.js"
   },
   "repository": {
     "type": "git",
